@@ -100,7 +100,7 @@ public class ChallengeFragment extends Fragment {
                 fragmentTransaction.commit();*/
 
                 //generate random number for challenge and display it
-                System.out.println("clicked");
+                System.out.println("challengefragment");
 
                 int min = 1;
                 int max = 10;
