@@ -19,6 +19,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
+
 public class Login extends AppCompatActivity {
 
     private EditText username;
@@ -27,9 +28,7 @@ public class Login extends AppCompatActivity {
     private Button buttonReg;
     private TextView attemptsInfo;
 
-
-    private final String realusername = "Admin";
-    private final String realpassword = "123";
+    public static String globalUserName;
 
     boolean isValid = false;
     private int counter = 5;
@@ -81,6 +80,7 @@ public class Login extends AppCompatActivity {
                     } else{
                         Toast.makeText(Login.this, "Login was successful!", Toast.LENGTH_SHORT).show();
 
+                        globalUserName = inputName;
                         //Go to the home activity
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         startActivity(intent);
