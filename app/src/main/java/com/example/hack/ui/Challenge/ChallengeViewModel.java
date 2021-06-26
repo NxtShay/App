@@ -10,7 +10,7 @@ public class ChallengeViewModel extends ViewModel {
 
     public ChallengeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is the challenge");
+        mText.setValue("");
     }
 
     public LiveData<String> getText() {

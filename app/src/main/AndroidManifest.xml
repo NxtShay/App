@@ -2,18 +2,34 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hack">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Hack">
-        <activity android:name=".Questions.Question1"></activity>
+        android:theme="@style/Theme.Hack"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ZipCode.EntryZipCode"></activity>
+        <activity android:name=".Question.Question10" />
+        <activity android:name=".Question.Question09" />
+        <activity android:name=".Question.Question08" />
+        <activity android:name=".Question.Question07" />
+        <activity android:name=".Question.Question06" />
+        <activity android:name=".Question.Question05" />
+        <activity android:name=".Question.Question04" />
+        <activity android:name=".Question.Question03" />
+        <activity android:name=".Question.Question02" />
+        <activity android:name=".Question.Question01" />
+        <activity android:name=".Challenge.DisplayChallenge" />
+        <activity android:name=".Login.Registration" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Hack.NoActionBar">
+            android:theme="@style/Theme.Hack.NoActionBar" />
+        <activity android:name=".Login.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

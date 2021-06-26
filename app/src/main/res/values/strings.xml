@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hack</string>
+    <string name="app_name">GreenPrint</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -8,6 +8,16 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_challenge">Challenge</string>
+    <string name="menu_morefunctions">more functions</string>
+
+    <string name="edit_zipcode">ENTER ZIPCODE</string>
+    <string name="button_enter">ENTER</string>
+    <string name="question_01">How many people live in your flat/house?</string>
+    <string name="q1_1">1</string>
+    <string name="q1_2">2</string>
+    <string name="q1_3">3</string>
+    <string name="q1_4">4</string>
+    <string name="q1_5">>4</string>
+    <string name="question_02">Is your electricity provider green?</string>
 </resources>

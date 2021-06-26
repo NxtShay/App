@@ -1,9 +1,12 @@
 package com.example.hack;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 
+import com.example.hack.Question.Question01;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -18,6 +21,7 @@ import com.example.hack.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button button;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -47,6 +51,19 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity();
+            }
+        });
+    }
+
+    public void openActivity() {
+        Intent intent = new Intent(this, Question01.class);
+        startActivity(intent);
     }
 
     @Override
