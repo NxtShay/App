@@ -69,6 +69,8 @@ public class Login extends AppCompatActivity {
                     if(!isValid) {
                         System.out.println(inputPassword.getClass().getName());
                         System.out.println(pw.getClass().getName());
+                        System.out.println(inputPassword);
+                        System.out.println(pw);
 
                         counter--;
                         Toast.makeText(Login.this, "Incorrect credentials entered!", Toast.LENGTH_SHORT).show();
@@ -116,7 +118,10 @@ public class Login extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        //Windows
         HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/user/password/" + name).openConnection();
+        //Linux
+        //HttpURLConnection connection = (HttpURLConnection) new URL("http","192.168.178.20",8080,"/api/v1/user/password/" + name).openConnection();
 
         connection.setRequestMethod("GET");
 
