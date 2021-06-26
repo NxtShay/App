@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openActivity() {
-        Intent intent = new Intent(this, Result.class);
+        Intent intent = new Intent(this, EntryZipCode.class);
         startActivity(intent);
     }
 

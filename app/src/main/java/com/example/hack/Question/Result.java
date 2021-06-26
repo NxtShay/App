@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.widget.TextView;
 
 import com.example.hack.R;
 
@@ -11,7 +12,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.Math;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
@@ -20,25 +20,36 @@ import static com.example.hack.Login.Login.globalUserName;
 
 public class Result extends AppCompatActivity {
 
-    public int Score = 0;
+    public double Score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result);
+        setContentView(R.layout.activity_recommendation);
 
         try {
             String result = getQuizData(globalUserName);
             JSONObject json = new JSONObject(result);
-            calculateFootprint(json);
+            Score = calculateFootprint(json);
+
+            TextView footprint = findViewById(R.id.footprint);
+
+            footprint.setText((int)Score + " points\n\n" +  "This is " + String.format("%.2f", Score * 0.1)  + " metric CO2e!");
+
+            TextView Recommendation1 = findViewById(R.id.Recommandation1);
+            TextView Recommendation2 = findViewById(R.id.Recommandation2);
+            TextView Recommendation3 = findViewById(R.id.Recommandation3);
+            TextView Recommendation4 = findViewById(R.id.Recommandation4);
+            TextView Recommendation5 = findViewById(R.id.Recommandation5);
+
+            Recommendation1.setText("lol");
 
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
-
     }
 
-    public void calculateFootprint(JSONObject json) throws JSONException {
+    public double calculateFootprint(JSONObject json) throws JSONException {
         if (!json.isNull("peopleInHouse")) {
             switch (json.getInt("peopleInHouse")) {
                 case 1:
@@ -107,7 +118,7 @@ public class Result extends AppCompatActivity {
             if (json.getInt("holidayCar") == 0) {
                 Score = Score;
             } else {
-                Score = (int) (Score + json.getInt("holidayCar") * 0.1);
+                Score = (Score + json.getInt("holidayCar") * 0.1);
             }
         }
         if (!json.isNull("holidayPlain")) {
@@ -201,11 +212,38 @@ public class Result extends AppCompatActivity {
                     break;
             }
         }
-        System.out.println(Score);
-        System.out.println(Score * 0.1 + " metric CO2e");
+
+        return Score;
     }
 
     public static String getQuizData(String name) throws IOException {
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/user/username/" + name).openConnection();
+
+        connection.setRequestMethod("GET");
+
+        int responseCode = connection.getResponseCode();
+        if (responseCode == 200) {
+            String response = "";
+            Scanner scanner = new Scanner(connection.getInputStream());
+            while (scanner.hasNextLine()) {
+                response += scanner.nextLine();
+                response += "\n";
+            }
+            scanner.close();
+
+            System.out.println(response);
+            return response;
+        }
+
+        // an error happened
+        return null;
+    }
+
+    public static String getRecommendationData(String name) throws IOException {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
