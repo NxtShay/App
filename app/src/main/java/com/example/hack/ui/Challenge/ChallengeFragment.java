@@ -29,10 +29,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Random;
 import java.util.Scanner;
+
+import static com.example.hack.Login.Login.globalUserName;
 
 public class ChallengeFragment extends Fragment {
 
@@ -177,7 +181,11 @@ public class ChallengeFragment extends Fragment {
                 String score = scoreText.split(" ")[3];
 
                 Toast.makeText(getActivity(), "Awesome! You gained "+score+" points.", Toast.LENGTH_SHORT).show();
-
+                try {
+                    updateUserScore(score);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 binding.textView5.setVisibility(View.INVISIBLE);
                 binding.textChallenge.setVisibility(View.INVISIBLE);
@@ -199,14 +207,42 @@ public class ChallengeFragment extends Fragment {
         binding = null;
     }
 
+    public void updateUserScore(String score) throws IOException {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        //Windows
+        //HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/challenge/id/" + value).openConnection();
+        //Linux
+        HttpURLConnection connection = (HttpURLConnection) new URL("http","192.168.178.20",8080,"/api/v1/user/").openConnection();
+
+        connection.setRequestMethod("PUT");
+        connection.setRequestProperty("Content-Type", "application/json; utf-8");
+        String jsonInputString = "{\"userName\":\""+ globalUserName.trim()+
+                "\", \"userScore\":\"" +score.trim()+"\"}";
+        System.out.println(jsonInputString);
+        connection.setDoOutput(true);
+        try(OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream())) {
+            wr.write(jsonInputString);
+            wr.flush();
+        }
+        int responseCode = connection.getResponseCode();
+        if(responseCode == 200){
+            System.out.println("PUT was successful.");
+        }
+        else if(responseCode == 401){
+            System.out.println("Cannot update score");
+        }
+    }
+
     private String getChallenge(int value) throws IOException {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
         //Windows
-        HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/challenge/id/" + value).openConnection();
+        //HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/challenge/id/" + value).openConnection();
         //Linux
-        //HttpURLConnection connection = (HttpURLConnection) new URL("http","192.168.178.20",8080,"/api/v1/challenge/id/" + String.valueOf(value)).openConnection();
+        HttpURLConnection connection = (HttpURLConnection) new URL("http","192.168.178.20",8080,"/api/v1/challenge/id/" + String.valueOf(value)).openConnection();
 
         connection.setRequestMethod("GET");
 
@@ -234,9 +270,9 @@ public class ChallengeFragment extends Fragment {
         StrictMode.setThreadPolicy(policy);
 
         //Windows
-        HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/challenge/size").openConnection();
+        //HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/challenge/size").openConnection();
         //Linux
-        //HttpURLConnection connection = (HttpURLConnection) new URL("http","192.168.178.20",8080,"/api/v1/challenge/size/").openConnection();
+        HttpURLConnection connection = (HttpURLConnection) new URL("http","192.168.178.20",8080,"/api/v1/challenge/size/").openConnection();
 
         connection.setRequestMethod("GET");
 

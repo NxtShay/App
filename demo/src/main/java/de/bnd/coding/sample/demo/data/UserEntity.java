@@ -85,8 +85,8 @@ public class UserEntity {
     @Column( name = "footprint" )
     private Integer footPrint = null;
 
-    @Column( name = "score" )
-    private Integer score;
+    @Column( name = "userscore" )
+    private Integer userScore;
 
 
     public UserEntity() {
@@ -204,7 +204,7 @@ public class UserEntity {
 
     public void setFootPrint(Integer footPrint) { this.footPrint = footPrint; }
 
-    public Integer getScore() { return score; }
+    public Integer getUserScore() { return userScore; }
 
-    public void setScore(Integer score) { this.score = score; }
+    public void setUserScore(Integer userScore) { this.userScore = userScore; }
 }

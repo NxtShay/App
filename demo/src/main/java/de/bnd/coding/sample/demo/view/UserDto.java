@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "peopleInHouse", "heating",  "electricity", "car", "kilometers", "holidayCar",
         "holidayPlane", "holidayTrain", "food", "pvSystem", "recycledGlass",
         "recyclingPlastic", "recyclingPaper", "recyclingMetal", "recyclingFoodwaste",
-        "washing", "footPrint", "score"})
+        "washing", "footPrint", "userScore"})
 public record UserDto (
     // JsonProperty maps a variable to a JSON field. The names do not have to match.
     @JsonProperty("userName") String userName,
@@ -37,5 +37,5 @@ public record UserDto (
     @JsonProperty("recyclingFoodwaste") Boolean recyclingFoodwaste,
     @JsonProperty("footprint") String washing,
     @JsonProperty("footPrint") Integer footPrint,
-    @JsonProperty("score") Integer score
+    @JsonProperty("userScore") Integer userScore
 ) { }

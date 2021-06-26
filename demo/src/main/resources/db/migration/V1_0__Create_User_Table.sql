@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS users (
     recyclingfoodwaste BOOL DEFAULT NULL,
     washing VARCHAR(255) DEFAULT NULL,
     footprint INT DEFAULT NULL,
-    score INT DEFAULT NULL,
+    userscore INT DEFAULT NULL,
     UNIQUE (username)
 ) ENGINE=INNODB;
 
@@ -34,14 +34,14 @@ CREATE TABLE IF NOT EXISTS carbonfootprints (
 
 CREATE TABLE IF NOT EXISTS challenges (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    challenge VARCHAR(255) NOT NULL,
+    challenge MEDIUMTEXT NOT NULL,
     category VARCHAR(255) NOT NULL,
     score INT NOT NULL
 ) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS recommondations (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    recommondation VARCHAR(255) NOT NULL,
+    recommondation MEDIUMTEXT NOT NULL,
     basedon VARCHAR(255) DEFAULT NULL,
     zipcode VARCHAR(255) DEFAULT NULL
 ) ENGINE=INNODB;
