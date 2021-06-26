@@ -35,7 +35,7 @@ public class UserService {
                 userEntity.getHolidayPlane(), userEntity.getHolidayTrain(), userEntity.getFood(),
                 userEntity.getPvSystem(), userEntity.getRecyclingGlass(), userEntity.getRecyclingPlastic(),
                 userEntity.getRecyclingPaper(), userEntity.getRecyclingMetal(), userEntity.getRecyclingFoodwaste(),
-                userEntity.getWashing(), userEntity.getFootPrint(), userEntity.getScore());
+                userEntity.getWashing(), userEntity.getFootPrint(), userEntity.getUserScore());
     }
 
     public String getPasswordByUser( String userName ) {
@@ -54,7 +54,7 @@ public class UserService {
                         x.getKilometers(), x.getHolidayCar(), x.getHolidayPlane(), x.getHolidayTrain(),
                         x.getFood(), x.getPvSystem(), x.getRecyclingGlass(), x.getRecyclingPlastic(),
                         x.getRecyclingPaper(), x.getRecyclingMetal(), x.getRecyclingFoodwaste(),
-                        x.getWashing(), x.getFootPrint(), x.getScore()))
+                        x.getWashing(), x.getFootPrint(), x.getUserScore()))
                 .collect(Collectors.toList());
     }
 
@@ -68,7 +68,7 @@ public class UserService {
                 userEntity.getHolidayPlane(), userEntity.getHolidayTrain(), userEntity.getFood(),
                 userEntity.getPvSystem(), userEntity.getRecyclingGlass(), userEntity.getRecyclingPlastic(),
                 userEntity.getRecyclingPaper(), userEntity.getRecyclingMetal(), userEntity.getRecyclingFoodwaste(),
-                userEntity.getWashing(), userEntity.getFootPrint(), userEntity.getScore());
+                userEntity.getWashing(), userEntity.getFootPrint(), userEntity.getUserScore());
     }
 
 
@@ -191,9 +191,13 @@ public class UserService {
                 userRepository.save(oldUserEntity);
             }
         }
-        if (userDto.score() != null) {
-            if( !userDto.washing().equals(oldUserEntity.getScore())) {
-                oldUserEntity.setScore(userDto.score());
+        if (userDto.userScore() != null) {
+            if( !userDto.userScore().equals(oldUserEntity.getUserScore())) {
+                if(oldUserEntity.getUserScore() == null){
+                    oldUserEntity.setUserScore(userDto.userScore());
+                } else {
+                    oldUserEntity.setUserScore(userDto.userScore() + oldUserEntity.getUserScore());
+                }
                 userRepository.save(oldUserEntity);
             }
         }
