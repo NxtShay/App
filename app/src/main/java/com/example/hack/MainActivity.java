@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.widget.Button;
 
 import com.example.hack.Question.Question01;
+import com.example.hack.ZipCode.EntryZipCode;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openActivity() {
-        Intent intent = new Intent(this, Question01.class);
+        Intent intent = new Intent(this, EntryZipCode.class);
         startActivity(intent);
     }
 

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hack"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ZipCode.EntryZipCode"></activity>
+        <activity android:name=".ZipCode.EntryZipCode" />
         <activity android:name=".Question.Question10" />
         <activity android:name=".Question.Question09" />
         <activity android:name=".Question.Question08" />

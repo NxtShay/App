@@ -18,7 +18,7 @@ public class EntryZipCode extends AppCompatActivity {
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
         super.onCreate (savedInstanceState);
-        setContentView (R.layout.activity_main);
+        setContentView (R.layout.activity_entry_zip_code);
 
         goToQuestion01 = (Button) findViewById (R.id.goToQuestion01);
         goToQuestion01.setOnClickListener (new View.OnClickListener ( ) {
