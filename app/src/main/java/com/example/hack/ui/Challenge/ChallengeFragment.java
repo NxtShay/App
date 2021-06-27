@@ -212,9 +212,9 @@ public class ChallengeFragment extends Fragment {
         StrictMode.setThreadPolicy(policy);
 
         //Windows
-        //HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/challenge/id/" + value).openConnection();
+        HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/challenge/id/" + score).openConnection();
         //Linux
-        HttpURLConnection connection = (HttpURLConnection) new URL("http","192.168.178.20",8080,"/api/v1/user/").openConnection();
+        //HttpURLConnection connection = (HttpURLConnection) new URL("http","192.168.178.20",8080,"/api/v1/user/").openConnection();
 
         connection.setRequestMethod("PUT");
         connection.setRequestProperty("Content-Type", "application/json; utf-8");
@@ -240,9 +240,9 @@ public class ChallengeFragment extends Fragment {
         StrictMode.setThreadPolicy(policy);
 
         //Windows
-        //HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/challenge/id/" + value).openConnection();
+        HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/challenge/id/" + value).openConnection();
         //Linux
-        HttpURLConnection connection = (HttpURLConnection) new URL("http","192.168.178.20",8080,"/api/v1/challenge/id/" + String.valueOf(value)).openConnection();
+        //HttpURLConnection connection = (HttpURLConnection) new URL("http","192.168.178.20",8080,"/api/v1/challenge/id/" + String.valueOf(value)).openConnection();
 
         connection.setRequestMethod("GET");
 
@@ -270,9 +270,9 @@ public class ChallengeFragment extends Fragment {
         StrictMode.setThreadPolicy(policy);
 
         //Windows
-        //HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/challenge/size").openConnection();
+        HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/challenge/size").openConnection();
         //Linux
-        HttpURLConnection connection = (HttpURLConnection) new URL("http","192.168.178.20",8080,"/api/v1/challenge/size/").openConnection();
+        //HttpURLConnection connection = (HttpURLConnection) new URL("http","192.168.178.20",8080,"/api/v1/challenge/size/").openConnection();
 
         connection.setRequestMethod("GET");
 
