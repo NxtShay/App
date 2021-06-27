@@ -2,6 +2,9 @@ package com.example.hack.Question;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.util.*;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -14,12 +17,22 @@ import com.example.hack.R;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.PrintStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.sql.SQLOutput;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+
+
 public class Question01 extends AppCompatActivity  {
     private Button goToQuestion02;
-
+    EditText numberOfPeopleInHouse;
+    int peopleInHouse;
 
     public void openQuestion02 () {
         Intent intent = new Intent (this, Question02.class);
@@ -32,6 +45,11 @@ public class Question01 extends AppCompatActivity  {
         setContentView (R.layout.activity_question01);
         Button goToQuestion02;
 
+        String peopleInHouseString = numberOfPeopleInHouse.getText ().toString ();
+        int peopleInHouse = Integer.parseInt (peopleInHouseString);
+
+
+        numberOfPeopleInHouse = findViewById (R.id.numberOfPeopleInHouse);
         //Next button
 
         goToQuestion02 = (Button) findViewById (R.id.gooToQuestion02);
@@ -43,5 +61,21 @@ public class Question01 extends AppCompatActivity  {
         });
 
 
+    }
+    public static void setPeopleInHouse(String username, int peopleInHouse) throws IOException {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/user/").openConnection();
+        connection.setRequestMethod("PUT");
+        connection.setRequestProperty("Content-Type", "application/json; utf-8");
+        String jsonInputString = "[{\"userName\":\""+ username+
+                "\", \"peopleInHouse\":\"" +peopleInHouse+"\"}]";
+        System.out.println(jsonInputString);
+        connection.setDoOutput(true);
+        try(OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream())) {
+            wr.write(jsonInputString);
+            wr.flush();
+        }
     }
 }

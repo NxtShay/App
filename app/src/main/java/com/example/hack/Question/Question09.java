@@ -10,9 +10,14 @@ import android.widget.Button;
 import com.example.hack.R;
 
 public class Question09 extends AppCompatActivity implements View.OnClickListener{
-
+    boolean recyclingGlass;
+    boolean recyclingPlastic;
+    boolean recyclingPaper;
+    boolean recyclingMetal;
+    boolean recyclingFoodwaste;
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
+
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_question09);
         Button goToQuestion10;
@@ -50,21 +55,22 @@ public class Question09 extends AppCompatActivity implements View.OnClickListene
     public void onClick ( View v ) {
         switch (v.getId ()){
             case R.id.q9_1:
-
+                recyclingGlass = true;
                 break;
             case R.id.q9_2:
-
+                recyclingPlastic = true;
                 break;
             case R.id.q9_3:
-
+                recyclingPaper = true;
                 break;
             case R.id.q9_4:
-
+                recyclingMetal = true;
                 break;
             case R.id.q9_5:
-
+                recyclingFoodwaste = true;
                 break;
         }
 
     }
+
 }

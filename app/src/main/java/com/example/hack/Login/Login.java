@@ -85,7 +85,7 @@ public class Login extends AppCompatActivity {
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         startActivity(intent);
                     }
-                }
+    }
             }
         });
 
@@ -111,30 +111,34 @@ public class Login extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public static String getPersonData(String name) throws IOException {
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+      public static String getPersonData(String name) throws IOException {
 
-        HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/user/password/" + name).openConnection();
+              StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+              StrictMode.setThreadPolicy(policy);
 
-        connection.setRequestMethod("GET");
+              HttpURLConnection connection = (HttpURLConnection) new URL("http://10.0.2.2:8080/api/v1/user/password/" + name).openConnection();
 
-        int responseCode = connection.getResponseCode();
-        if(responseCode == 200){
-            String response = "";
-            Scanner scanner = new Scanner(connection.getInputStream());
-            while(scanner.hasNextLine()){
-                response += scanner.nextLine();
-                response += "\n";
-            }
-            scanner.close();
+              connection.setRequestMethod("GET");
 
-            System.out.println(response);
-            return response;
-        }
+              int responseCode = connection.getResponseCode();
+              if(responseCode == 200){
+                  String response = "";
+                  Scanner scanner = new Scanner(connection.getInputStream());
+                  while(scanner.hasNextLine()){
+                      response += scanner.nextLine();
+                      response += "\n";
+                  }
+                  scanner.close();
 
-        // an error happened
-        return null;
-    }
+                  System.out.println(response);
+                  return response;
+              }
+
+              // an error happened
+              return null;
+          }
+
+
+
 }
