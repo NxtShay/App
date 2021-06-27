@@ -46,6 +46,7 @@ public class Question01 extends AppCompatActivity  {
             @Override
             public void onClick ( View v ) {
                 openQuestion02 ( );
+                finish ();
             }
         });
 
